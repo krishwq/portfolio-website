@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio website</title>
+  <script src="https://kit.fontawesome.com/4066c38b65.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --white: white;
+      --black: black;
+    }
+
+    body {
+
+      background-color: var(--black);
+      color: var(--white);
+    }
+
+    .welcome {
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+      display: inline-block;
+      height: 50px;
+      font-family: 'Times New Roman', serif;
+      font-size: 30px;
+      letter-spacing: 3px;
+
+    }
+
+    .small {
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+      display: inline-block;
+    }
+
+    .text {
+      text-align: center;
+      display: inline;
+      padding: 0px 5px;
+      opacity: 0;
+      background-size: 400%;
+      background-image: linear-gradient(90deg, violet, blue, indigo, green, yellow, orange, red);
+      font-weight: 1000;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      animation: color 10s linear infinite, text 0.01s linear 0.5s forwards;
+    }
+
+    .welcome .swipe {
+      &:after {
+        background-color: rgb(215, 48, 160);
+      }
+    }
+
+    .small .swipe {
+      &:after {
+        background-color: white;
+      }
+    }
+
+    .swipe {
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 90%;
+        bottom: 0;
+        z-index: 1;
+        animation: swipe-text 1s ease-out 0s forwards;
+      }
+    }
+
+    @keyframes color {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 400%;
+      }
+    }
+
+    @keyframes swipe-text {
+      0% {
+        width: 0%;
+        right: 100%;
+        left: 0;
+      }
+
+      50% {
+        width: 100%;
+        right: 0%;
+        left: 0;
+      }
+
+      100% {
+        width: 0%;
+        left: 100%;
+      }
+    }
+
+    @keyframes text {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .parent {
+      position: relative;
+      display: block;
+      top: 0px;
+      right: 10px;
+      height: 30px;
+      width: 50px;
+      border: 2px var(--white) solid;
+      border-radius: 20px;
+      cursor: pointer;
+      background-color: var(--black);
+    }
+
+    .child {
+      padding: 3px;
+      background-color: var(--white);
+      height: 20px;
+      width: 20px;
+      position: relative;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      transition: 0.2s linear;
+      cursor: pointer;
+    }
+
+    .navbar {
+      background-color: var(--black);
+      width: 100%;
+      position: relative;
+      display: flex;
+      min-height: 70px;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+
+    }
+
+    .link a {
+      text-decoration: none;
+      color: var(--white);
+      padding: 10px;
+
+    }
+
+    .nav {
+      position: relative;
+      top: 4px;
+      left: 10px;
+    }
+
+    .link {
+      padding: 10px;
+      display: inline-block;
+      transition: transform 0.2s linear;
+      background-color: rgb(22, 104, 134);
+      border-radius: 10px;
+      margin-left: 10px;
+    }
+
+    .link:hover {
+      background-color: rgb(79, 194, 34);
+      border-radius: 10px;
+      transform: scale(1.15, 1.15);
+      z-index: 1;
+    }
+
+    .link:hover a {
+      color: black;
+      font-weight: 1000;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .icon:hover .child {
+      background-color: gray;
+    }
+
+    @media only screen and (max-width: 960px) {
+      .link {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .navbar {
+        position: relative;
+      }
+
+      .nav {
+        width: 60%;
+      }
+
+    }
+
+    .home-text {
+      background-color: rgb(67, 63, 63);
+      position: relative;
+      left: 50%;
+      width: 40%;
+      transform: translate(-50%);
+      padding: 5px;
+      margin: 30px 10px;
+      border-radius: 10px;
+      color: yellow;
+    }
+
+    .home-text h3 {
+      padding-left: 10px;
+    }
+
+    .home-text h2 {
+      text-align: center;
+    }
+
+    .home-text h4 {
+      text-align: center;
+    }
+
+    .home-text h2 .myname {
+      color: rgb(213, 57, 215);
+      letter-spacing: 1px;
+      word-spacing: 2px;
+
+    }
+
+   
+
+    .about p {
+      text-align: center;
+      font-size: 20px;
+
+    }
+
+    .about {
+      width: 60%;
+      border: 5px double rgb(50, 44, 168);
+      padding: 0 10px;
+      margin: 40px;
+      border-radius: 10px;
+      background-image: linear-gradient(45deg, blue, red, green, yellow);
+      background-clip: padding-box;
+      transition: transform 0.3s;
+    }
+
+    .about:hover {
+      transform: scale(1.15, 1.15);
+    }
+
+    #contact .contactlink div {
+      display: inline-flex;
+      font-size: 40px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    #contact .contactlink div a {
+      color: white;
+    }
+
+    #contact .contactlink div:hover {
+      transform: scale(1.1, 1.1);
+    }
+
+    .insta {
+      background-image: linear-gradient(to bottom right, blue, rgb(210, 60, 120), yellow);
+    }
+
+    .linkdin {
+      background-color: rgb(22, 42, 143);
+    }
+
+    .whatsapp {
+      background-color: rgb(64, 203, 64);
+    }
+
+    .contactlink {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    #contact h3 {
+      text-align: center;
+    }
+
+    #contact h3 a:active {
+      color: green;
+    }
+
+    #contact h3 a:visited {
+      color: yellowgreen;
+    }
+
+    .conclusion {
+      margin: 40px 0px;
+    }
+
+    .conclusion h2 {
+      text-align: center;
+      color: #d596dc;
+    }
+
+    .conclusion h2 hr {
+      width: 60%;
+      border: none;
+      height: 5px;
+      background-color: #a363aa;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .education-data {
+      margin: 30px 0px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translate(-50%);
+      background-image: url(Tech-Article-1.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: none;
+      border-radius: 10px;
+      padding: 5px;
+      color: rgba(0, 0, 0, 0.954);
+    }
+
+    .education-data ul {
+      list-style: disc;
+    }
+
+    .education-data ul li span {
+      color: blue;
+    }
+
+    .experience-data {
+      padding: 10px;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      width: 70%;
+      background-color: #6d0e7a;
+      border-radius: 10px;
+    }
+
+    .experience-data li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 17px;
+    }
+
+    .experience-data li {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .experience-data li img {
+      height: 40px;
+      width: 40px;
+    }
+
+    .experience-data dd {
+      color: aqua;
+    }
+
+    .skill-data {
+      padding: 10px;
+      margin: 40px 0px;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      background-color: var(--white);
+      border-radius: 10px;
+      width: 33%;
+      overflow-x: scroll;
+    }
+
+    .skill-data p i {
+      font-size: 20px;
+      color: var(--black);
+      padding-left: 5px;
+    }
+
+    .skill-data p {
+      display: flex;
+      align-items: center;
+    }
+
+    .interest-data {
+      margin: 40px 0px;
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+    }
+
+     .container {
+      display: inline;
+      position: relative;
+      width: 33%;
+      border: 2px var(--white) dotted;
+      object-fit: fill;
+      border-radius: 10px;
+      padding: 2px;
+      margin: 3px;
+    }
+ .container img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.5s ease;
+    }
+
+     .container .middle {
+      transition: 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+     .container .middle .text1 {
+      background-color: gray;
+      color: white;
+      font-size: 16px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .container:hover img {
+      opacity: 0.3;
+    }
+
+    .container:hover .middle {
+      opacity: 1;
+    }
+    .middle-work{
+      transition: 0.5s ease;
+      position: absolute;
+      bottom: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  overflow: hidden;
+  height: 0;
+    }
+    .container:hover .middle-work{
+      visibility: visible;
+height: 100%;
+    }
+
+    .middle-work button{
+      background-color: greenyellow;
+      padding: 5px;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 7px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .middle-work button:hover{
+      background-color: rgb(6, 125, 6);
+      font-weight: 500;
+    }
+    .middle-work .text-work{
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+      top: 50%;
+      left: 10px;
+      right: 10px;
+      transform: translate(0,-50%);
+    }
+    .heading {
+      cursor: pointer;
+      text-align: center;
+      margin: 80px 0px;
+    }
+    .heading hr{
+      width: 0px;
+      height: 3px;
+      visibility: hidden;
+      background-color: #fff;
+      border-radius: 30px;
+      transition: 0.3s ease;
+    }
+    .heading:hover hr{
+      visibility: visible;
+      width: 150px;
+    }
+    @media (max-width:800px){
+      .interest-data{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .container{
+        position: relative;
+        width: 60%;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%);
+        margin-bottom: 5px;
+      }
+    }
+    #link-work1{
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(255, 174, 0);
+      border-radius: 10px;
+      display: none;
+      color: black;
+    }
+    #link-work2{
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(255, 174, 0);
+      border-radius: 10px;
+      display: none;
+      color: black;
+    }
+    #link-work3{
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(255, 174, 0);
+      border-radius: 10px;
+      display: none;
+      color: black;
+    }
+    .workslink p{
+padding: 5px;
+text-align: center;
+    }
+    .workslink ul{
+      text-align: left;
+    }
+    
+  </style>
+  <script>
+    var r = document.querySelector(':root');
+    var rs = getComputedStyle(r);
+    function set() {
+      if (rs.getPropertyValue('--white') == 'white') {
+        r.style.setProperty('--white', 'black');
+        r.style.setProperty('--black', 'white');
+        document.getElementById('id').style.cssText = 'left:22px;'
+        document.getElementById('mode').innerHTML = "Light<br>Mode";
+      }
+      else {
+        r.style.setProperty('--white', 'white');
+        r.style.setProperty('--black', 'black');
+        document.getElementById('id').style.cssText = 'left:2px;'
+        document.getElementById('mode').innerHTML = "Dark<br>Mode";
+      }
+    } 
+    function showDiv1() {
+      document.getElementById('link-work1').style.display = 'block';
+      document.getElementById('link-work1').style.overflow = 'scroll';
+    }
+    function showDiv2() {
+      document.getElementById('link-work2').style.display = 'block';
+      document.getElementById('link-work2').style.overflow = 'scroll';
+    }
+    function showDiv3() {
+      document.getElementById('link-work3').style.display = 'block';
+      document.getElementById('link-work3').style.overflow = 'scroll';
+    }
+    function hideDiv1() {
+      document.getElementById('link-work1').style.display = 'none';
+      document.getElementById('link-work1').style.overflow = 'hidden';
+    }
+    function hideDiv2() {
+      document.getElementById('link-work2').style.display = 'none';
+      document.getElementById('link-work2').style.overflow = 'hidden';
+    }
+    function hideDiv3() {
+      document.getElementById('link-work3').style.display = 'none';
+      document.getElementById('link-work3').style.overflow = 'hidden';
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="nav">
+      <div class="link"><a href="#home">Home</a></div>
+      <div class="link"><a href="#aboutme">About Me</a></div>
+      <div class="link"><a href="#education">Education</a></div>
+      <div class="link"><a href="#experience">Experience</a></div>
+      <div class="link"><a href="#skill">Skills</a></div>
+      <div class="link"><a href="#interest">Interests</a></div>
+      <div class="link"><a href="#work">Works</a></div>
+      <div class="link"><a href="#contact">Contact</a></div>
+    </div>
+    <div class="icon">
+      <div class="parent" onclick="set()">
+        <div class="child" id="id"></div>
+      </div>
+      <span id="mode">Dark<br>Mode</span>
+    </div>
+  </div>
+  <br><br><br><br>
+  <section id="home">
+    </div>
+    <div class="welcome">
+      <div class="swipe">
+        <h2 class="text">WELCOME</h2>
+      </div>
+    </div>
+    <br><br>
+    <div class="small">
+      <div class="swipe">
+        <h4 class="text">TO MY PORTFOIO WEBSITE</h4>
+      </div>
+    </div>
+    <div class="home-text">
+      <h3>HI</h3>
+      <h2>I AM <span class="myname">KRISHNENDU BIR</span></h2>
+      <h4>I am a Devoleper and designer</h4>
+    </div>
+  </section>
+  <section id="aboutme">
+    <h2 class="heading">ABOUT ME<hr></h2>
+    <center>
+      <div class="about">
+        <p>I am <b>KRISHNENDU BIR</b>.I am a from Barasat,Kolkata,West Bengal.I am a student of <b>INDIAN INSTITUTE OF
+            TECHNOLOGY BHUBANESWAR ( IIT BBS )</b>.I am a student of B.Tech 1st year.My branch is Electrical
+          Engeneering.Now I am
+          working in the field of Web Devolopment.My aspire is to be a full stack devoloper.My hobbies are
+          watching movies and listening songs.</p>
+      </div>
+    </center>
+  </section>
+  <section id="education">
+    <h2 class="heading">EDUCATION<hr></h2>
+    <div class="education-data">
+      <ul>
+        <li><b>HOLY CHILD KG SCHOOL</b><br>&nbsp;<span>primery education</span></li><br><br>
+        <li><b>PURBA BARASAT ADARSHA BIDYAPEETH</b><br>&nbsp;<span>class 10</span></li><br><br>
+        <li><b>PURBA BARASAT ADARSHA BIDYAPEETH</b><br>&nbsp;<span>class 12</span></li><br><br>
+        <li><b>INDIAN INSTITUTE OF TECHNOLOGY BHUBANESWAR</b><br>&nbsp;<span>B.Tech</span></li><br><br>
+      </ul>
+    </div>
+  </section>
+  <section id="experience">
+    <h2 class="heading">EXPERIENCE<hr></h2>
+    <div class="experience-data">
+      <center>
+        <dl>
+          <li>1.&nbsp;<img src="webd.png">&nbsp;<em title="Web Devolopment society of IIT BHUBANESWAR"><a
+                href="https://gymkhana.iitbbs.ac.in/clubs/webd.php" target="_blank">WEBnD SOCIETY IIT
+                BHUBANESWAR</a></em></li><br>
+          <dd>I am a member of WebnD society.</dd><br><br>
+          <li>2.&nbsp;<img src="41673377.png">&nbsp;<em title="Robotics society of IIT BHUBANESWAR"><a
+                href="https://gymkhana.iitbbs.ac.in/clubs/risc.php" target="_blank">RISC SOCIETY IIT
+                BHUBANESWAR</a></em></li>
+          <dd>I am a member of RISC society.</dd><br><br>
+          <li>3.&nbsp;<img src="images (1).jpeg">&nbsp;<em title="Cultural feast of IIT BHUBANESWAR"><a
+                href="https://almafiesta.in/" target="_blank">ALMA FIESTA IIT BHUBANESWAR</a></em></li>
+          <dd>I am an associate of ALMA FIESTA.</dd><br><br>
+        </dl>
+      </center>
+    </div>
+    <section id="skill">
+      <h2 class="heading">SKILLS<hr></h2>
+      <div class="skill-data">
+        <p><i class="fa-brands fa-html5" style="color: orangered;font-size: 50px;padding-right: 60px;"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></i><i
+            class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+        <p><i class="fa-brands fa-css3-alt" style="color: blue;font-size: 50px;padding-right: 60px;"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+        <p><i class="fa-brands fa-js" style="color: yellow;font-size: 50px;padding-right: 58px;"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+            class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+        <p><i class="fa-solid fa-c" style="color: rgb(38, 38, 228);font-size: 50px;padding-right: 63px;"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></p>
+        <p><i class="fa-solid fa-c" style="color: #6d0e7a;font-size: 50px;"></i><b
+            style="color: #6d0e7a;padding-right: 40px;font-size: 25px;">++</b><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-regular fa-star"></i></p>
+        <p><i class="fa-brands fa-python" style="color: rgb(255, 196, 0);font-size: 50px;padding-right: 60px;"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+            class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+      </div>
+    </section>
+    <section id="interest">
+      <h2 class="heading">INTEREST<hr></h2>
+      <div class="interest-data">
+        <div class="container"><img src="Web-Development.jpg">
+          <div class="middle">
+            <div class="text1">Web Devolopement</div>
+          </div>
+        </div>
+        <div class="container"><img src="cybersecurity.jpeg">
+          <div class="middle">
+            <div class="text1">cyber Security</div>
+          </div>
+        </div>
+        <div class="container"><img src="language.webp">
+          <div class="middle">
+            <div class="text1">Programming Language</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="work">
+      <h2 class="heading">MY WORKS<hr></h2>
+      <div class="interest-data">
+        <div class="container"><img src="pattern.jpg">
+          <div class="middle-work">
+            <div class="text-work">
+            <p style="text-align: justify;">I have done three pattern and one animation.You can view that by clicking the button below.</p>
+            <button onclick="showDiv1()">View pattern&nbsp;&raquo;</button>
+            </div>
+          </div>
+          <div class="workslink" id="link-work1">
+              <p>Here is the some pattern which I have made.please click the follwing links to see the patterns.</p>
+              <ul>
+                <li><a href="https://krishwq.github.io/pattern/" target="_parent">Pattern 1</a></li>
+                <li><a href="https://krishwq.github.io/pattern1/" target="_parent">Pattern 2</a></li>
+                <li><a href="https://krishwq.github.io/pattern3/" target="_parent">Pattern 3</a></li>
+                <li><a href="https://krishwq.github.io/animation/" target="_parent">Animation</a></li>
+              </ul>
+              <p><button onclick="hideDiv1()">CLOSE</button></p>
+          </div>
+        </div>
+        <div class="container"><img src="layout.avif">
+          <div class="middle-work">
+            <div class="text-work">
+            <p style="text-align: justify;">I have done some layout of simple website.You can cheek that layout by clicking the button below.</p>
+            <button onclick="showDiv2()">View layout&nbsp;&raquo;</button>
+          </div>
+          </div>
+          <div class="workslink" id="link-work2">
+            <p>Here is the some layout which I have made.please click the follwing links to see the layouts.</p>
+              <ul>
+                <li><a href="https://krishwq.github.io/cv-html-layout/ " target="_parent">layout 1</a></li>
+                <li><a href=" https://krishwq.github.io/html-layout/" target="_parent">layout 2</a></li>
+                <li><a href=" https://krishwq.github.io/html-layout-2/" target="_self">layout 2</a></li>
+              </ul>
+              <p><button onclick="hideDiv2()">CLOSE</button></p>
+          </div>
+        </div>
+        <div class="container"><img src="images.jpeg">
+          <div class="middle-work">
+            <div class="text-work">
+            <p style="text-align: justify;">I have made a basic hand cricket game in c++ language.You can cheek,download and play by clicking the button below.</p>
+            <button onclick="showDiv3()">View project&nbsp;&raquo;</button>
+          </div>
+        </div>
+        <div class="workslink" id="link-work3">
+          <p>Here is the simple game which i have made.<a href="cricketgame.exe">Click Here</a> to see the game</p>
+          <p><button onclick="hideDiv3()">CLOSE</button></p>
+        </div>
+      </div>
+
+    </section>
+    <section id="contact">
+      <h2 class="heading">CONTACT ME<hr></h2>
+      <h4 style="margin-left: 20px;">Mobile:-&nbsp;<u>+91 6290670132</u><br><br>Email
+        id:-&nbsp;<u>23ee01025@iitbbs.ac.in</u> /
+        <u>birkrishnendu@gmail.com</u>
+      </h4>
+      <div class="contactlink">
+        <div class="insta"><a href="https://www.instagram.com/krishnendubir?igsh=OGQ5ZDc2ODk2ZA==" target="_blank"><i
+              class="fa-brands fa-instagram"></i></a></div>
+        <div class="linkdin"><a
+            href="https://www.linkedin.com/in/krishnendu-bir-383324284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></div>
+        <div class="whatsapp"><a href="https://wa.me/qr/KV3V32ILESLCD1 " target="_blank"><i
+              class="fa-brands fa-whatsapp"></i></a></div>
+        <div class="telegram"><a href="https://telegram.me/krishnendubir" target="_blank"
+            style=" color: rgb(78, 178, 206);font-size: 55px;"><i class="fa-brands fa-telegram"></i></i></a></div>
+        <div class="git"><a href="https://github.com/krishwq" target="_blank"
+            style="font-size: 55px; color: var(--white);"><i class="fa-brands fa-github"></i></a></div>
+        <div class="mail"><a href="mailto:23ee01025@iitbbs.ac.in" target="_blank"
+            style="font-size: 50px; color: var(--white);"><i class="fa-solid fa-envelope"></i></a></div>
+      </div>
+      <h3> <a href="message.html" target="_blank">Click Here</a><br>TO DO DIRECT MESSAGE</h3>
+    </section>
+    <div class="conclusion">
+      <h2>
+        <hr>THANK YOU FOR VISITING MY WEBSITE
+      </h2>
+    </div>
+
+</body>
+
+</html>
